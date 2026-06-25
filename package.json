@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node api/mock_claim_api.mjs",
-    "build:workbook": "node scripts/build_workbook.mjs",
+    "build:templates": "node scripts/build_templates.mjs",
+    "build:workbook": "npm run build:templates",
     "check:telnyx-env": "node scripts/check_telnyx_env.mjs",
     "create:assistant": "node scripts/create_assistant.mjs",
     "validate:workflow": "node scripts/validate_workflow.mjs"

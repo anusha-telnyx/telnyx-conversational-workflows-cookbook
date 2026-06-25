@@ -1,6 +1,6 @@
 # How It Works
 
-This cookbook shows how to build an inbound Telnyx Conversational Workflow for auto insurance first notice of loss intake.
+This page explains the architecture after you have read the beginner tutorial in `docs/build-the-workflow.md`.
 
 The workflow source of truth is `workflows/auto_claim_intake_workflow.json`. The Portal mapping is documented in `workflows/portal_build_guide.md`.
 

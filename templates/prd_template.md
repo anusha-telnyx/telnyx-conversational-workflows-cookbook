@@ -164,7 +164,7 @@ complete this checklist before requesting review. mark non-applicable items as `
 | tool contract docs | yes / no | `automation/` |  |  |
 | schema | yes / no | `schemas/` |  |  |
 | automation mapping | yes / no | `automation/` |  |  |
-| workbook or output template | yes / no | `outputs/` |  |  |
+| CSV or output template | yes / no | `outputs/` |  |  |
 | manual test plan | yes / no | `tests/` |  |  |
 | readme update | yes / no | `README.md` |  |  |
 
@@ -190,7 +190,7 @@ list any commands contributors should run before review.
 
 ```bash
 npm run validate:workflow
-npm run build:workbook
+npm run build:templates
 ```
 
 ## 11. dependencies and assumptions
