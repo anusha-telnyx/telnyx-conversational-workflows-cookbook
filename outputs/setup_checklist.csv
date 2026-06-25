@@ -1,0 +1,12 @@
+step,owner,status,notes
+create telnyx account,business,not started,required before phone number purchase
+buy inbound telnyx number,business,not started,must support inbound voice
+start or deploy mock claim api,technical,not started,use api/mock_claim_api.mjs
+create conversational workflow,business,not started,name: auto claim intake conversational workflow
+configure voice,business,not started,voice ultra katie
+upload faq,business,not started,use completed faq/faq_template.md if knowledge is enabled
+configure live tools,technical,not started,use automation/tool_contracts.md
+enable insights,business,not started,use schemas/conversation_insights_schema.json
+connect insights webhook,technical,not started,"zapier, make, or qa endpoint"
+map sheet fields,business,not started,use automation/zapier_make_mapping.md
+run manual tests,business,not started,use tests/manual_test_plan.md

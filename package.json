@@ -1,0 +1,14 @@
+{
+  "name": "telnyx-conversational-workflows-cookbook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node api/mock_claim_api.mjs",
+    "build:workbook": "node scripts/build_workbook.mjs",
+    "check:telnyx-env": "node scripts/check_telnyx_env.mjs",
+    "create:assistant": "node scripts/create_assistant.mjs",
+    "validate:workflow": "node scripts/validate_workflow.mjs"
+  },
+  "dependencies": {}
+}

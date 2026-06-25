@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.telnyx-assistant.json
+node_modules/
+npm-debug.log*
+coverage/
+.nyc_output/
+outputs/*.xlsx
+outputs/*.png
