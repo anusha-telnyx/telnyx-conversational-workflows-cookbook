@@ -1,132 +1,74 @@
 # Telnyx Conversational Workflows Cookbook
 
-Learn how to build a Telnyx Conversational Workflow by walking through a realistic inbound auto-claim intake example.
+A small, beginner-friendly example for learning how to build a Telnyx Conversational Workflow.
 
-This cookbook is meant for someone who wants to understand the pattern, not just copy files. It shows how to design the conversation, add decision branches, collect fields, call backend tools, handle fallbacks, and review structured call results.
+This cookbook teaches one pattern: an inbound caller reports an auto claim, the workflow asks the right questions, calls a backend tool, and gives the caller a reference number.
+
+## The Whole Repo
+
+```txt
+README.md             start here
+WORKFLOW_GUIDE.md     step-by-step build guide
+workflow.json         example workflow blueprint
+mock-claim-api.mjs    tiny local API for tool calls
+tool-contracts.md     request and response examples
+TEST_PLAN.md          calls to run after you build it
+validate-workflow.mjs checks the workflow file
+```
+
+That is the core learning path. Everything else is standard project setup.
 
 ## What You Will Build
 
-A caller phones an insurance claims line. The workflow asks what happened, checks whether the situation is urgent, collects the details needed for a first notice of loss, calls a claim-intake tool, and creates a priority follow-up when needed.
-
 ```txt
 caller calls in
--> workflow greets them
--> workflow checks whether this is an auto claim
--> workflow triages safety and urgency
+-> workflow asks if this is a new auto claim
+-> workflow checks for injury or urgent issues
 -> workflow collects claim details
--> workflow calls a backend tool
--> workflow gives the caller a reference number
--> workflow saves structured insights for review
+-> workflow calls create_claim_intake
+-> workflow optionally flags priority follow-up
+-> workflow gives the caller a claim reference
 ```
 
-## Start Here
+## Quick Start
 
-1. Read the plain-English walkthrough: [docs/build-the-workflow.md](docs/build-the-workflow.md)
-2. Start the mock claim API:
-
-   ```bash
-   npm install
-   cp .env.example .env
-   CLAIM_TOOL_SECRET=dev-secret npm start
-   ```
-
-3. Confirm it is running:
-
-   ```bash
-   curl -s http://localhost:8787/health
-   ```
-
-4. Build the workflow in the Telnyx Portal using [workflows/portal_build_guide.md](workflows/portal_build_guide.md)
-5. Run the test calls in [docs/test-the-workflow.md](docs/test-the-workflow.md)
-
-## What To Look At First
-
-If you only open three files, open these:
-
-- [docs/build-the-workflow.md](docs/build-the-workflow.md): the beginner-friendly tutorial
-- [workflows/auto_claim_intake_workflow.json](workflows/auto_claim_intake_workflow.json): the workflow blueprint
-- [api/mock_claim_api.mjs](api/mock_claim_api.mjs): the tiny backend used by the workflow tools
-
-## Project Map
-
-```txt
-docs/
-  build-the-workflow.md     beginner tutorial
-  how-it-works.md           architecture explanation
-  test-the-workflow.md      test call checklist
-
-workflows/
-  auto_claim_intake_workflow.json   workflow blueprint
-  portal_build_guide.md             Telnyx Portal build map
-
-api/
-  mock_claim_api.mjs        local backend for workflow tool calls
-
-automation/
-  tool_contracts.md         request and response shapes for each tool
-  zapier_make_mapping.md    mapping insights to a sheet or tracker
-
-schemas/
-  conversation_insights_schema.json structured call summary schema
-
-outputs/
-  auto_claim_intake_summaries.csv   generated QA sheet template
-  setup_checklist.csv               generated setup checklist
-```
-
-## Requirements
-
-- Node.js 20 or newer
-- A Telnyx account
-- Access to Telnyx Conversational Workflows
-- An inbound voice-capable Telnyx phone number
-- A public HTTPS tunnel or deployed URL for the mock API
-
-For local testing, a tunnel such as ngrok can forward Telnyx tool calls to `http://localhost:8787`.
-
-## Useful Commands
-
-Install dependencies:
+Install and validate the example:
 
 ```bash
 npm install
+npm run validate
 ```
 
-Run the mock API:
+Start the local mock API:
 
 ```bash
+cp .env.example .env
 CLAIM_TOOL_SECRET=dev-secret npm start
 ```
 
-Validate the workflow blueprint:
+Check that it is running:
 
 ```bash
-npm run validate:workflow
+curl -s http://localhost:8787/health
 ```
 
-Generate CSV templates for QA:
+Then open [WORKFLOW_GUIDE.md](WORKFLOW_GUIDE.md) and build the workflow in Telnyx.
 
-```bash
-npm run build:templates
-```
+## The Three Concepts
 
-## The Three Tool Calls
+1. **Nodes** ask questions, collect fields, make decisions, or call tools.
+2. **Branches** decide where the caller goes next.
+3. **Tools** let the workflow call your backend when it has enough information.
 
-The workflow uses three backend tools:
+This example has three tools:
 
-- `create_claim_intake`: creates a mock claim intake record
-- `log_claim_intake_fallback`: records incomplete, misdirected, or failed intakes
-- `flag_priority_follow_up`: creates a priority follow-up task for urgent cases
+- `create_claim_intake`
+- `log_claim_intake_fallback`
+- `flag_priority_follow_up`
 
-The detailed request and response contracts are in [automation/tool_contracts.md](automation/tool_contracts.md).
+See [tool-contracts.md](tool-contracts.md) for the exact API shapes.
 
-## Learning Goal
+## Test It
 
-After working through this cookbook, you should understand how to turn a business process into a conversational workflow:
+After the workflow is built in Telnyx, run the scenarios in [TEST_PLAN.md](TEST_PLAN.md).
 
-- define the happy path
-- add branches for unclear or unsupported callers
-- collect only the fields needed at each step
-- call tools only after the workflow has enough information
-- create fallbacks for incomplete information or tool failures
-- capture structured insights so humans can review what happened

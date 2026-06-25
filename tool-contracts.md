@@ -1,6 +1,6 @@
 # telnyx live tool contracts
 
-these endpoints are the v1 mock claim api for telnyx assistant live tool calls. expose them publicly for telnyx with a tunneling service or deployed host, then configure equivalent webhook tools in the telnyx assistant.
+these endpoints are the v1 mock claim api for telnyx conversational workflow tool calls. expose them publicly for telnyx with a tunneling service or deployed host, then configure matching tool nodes in the workflow.
 
 ## base url
 

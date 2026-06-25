@@ -1,8 +1,6 @@
 import fs from "node:fs/promises";
-import path from "node:path";
-import { projectDir } from "./paths.mjs";
 
-const workflowPath = path.join(projectDir, "workflows", "auto_claim_intake_workflow.json");
+const workflowPath = new URL("./workflow.json", import.meta.url);
 
 const workflow = JSON.parse(await fs.readFile(workflowPath, "utf8"));
 const nodes = new Map(workflow.nodes.map((node) => [node.id, node]));
