@@ -4,6 +4,47 @@ A small, beginner-friendly example for learning how to build a Telnyx Conversati
 
 This cookbook teaches one pattern: an inbound caller reports an auto claim, the workflow asks the right questions, calls a backend tool, and gives the caller a reference number.
 
+## Why This Matters
+
+Many voice AI demos start with a prompt and hope the assistant follows the right path. That can work for open-ended conversations, but business intake calls usually need more structure.
+
+Insurance claim intake is a good example because the caller may be stressed, the company needs specific information, and the workflow must avoid saying the wrong thing. The system should collect facts, route urgent cases, create a record, and leave coverage or liability decisions to the claims team.
+
+That is why this cookbook uses a Conversational Workflow:
+
+- the caller gets a clear, step-by-step experience
+- the business controls which questions are asked
+- urgent situations can branch early
+- backend tools are called only after required fields are collected
+- fallback paths are explicit when the caller is not ready or the tool fails
+
+## Why Not Just Use One Big Prompt?
+
+A single assistant prompt can be hard to audit. It may skip required fields, handle edge cases inconsistently, or call a tool before enough information is available.
+
+A workflow makes the process visible. You can point to each node and say:
+
+- what question is asked
+- what information is saved
+- what branch happens next
+- when a tool is allowed to run
+- what happens if the call cannot continue
+
+For regulated or operational workflows, that visibility matters.
+
+## Why Insurance?
+
+This walkthrough uses auto insurance first notice of loss because it is easy to understand and has realistic workflow requirements:
+
+- identify whether the caller has the right issue
+- triage injury or emergency situations
+- collect caller, policy, vehicle, and incident details
+- avoid promises about coverage, payment, repairs, liability, legal advice, or medical advice
+- create a claim intake record
+- flag urgent cases for human follow-up
+
+You can reuse the same pattern for appointment scheduling, support triage, lead qualification, account updates, patient intake, or service dispatch.
+
 ## The Whole Repo
 
 ```txt
@@ -71,4 +112,3 @@ See [tool-contracts.md](tool-contracts.md) for the exact API shapes.
 ## Test It
 
 After the workflow is built in Telnyx, run the scenarios in [TEST_PLAN.md](TEST_PLAN.md).
-

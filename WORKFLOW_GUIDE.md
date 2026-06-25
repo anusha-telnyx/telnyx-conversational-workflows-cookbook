@@ -8,6 +8,8 @@ The caller wants to report a new auto claim.
 
 The workflow should collect enough information for the claims team to follow up. It should not promise coverage, payment, liability, repairs, legal advice, medical advice, or settlement timing.
 
+This matters because claim intake is not just a conversation. It is a business process. The workflow needs to be predictable enough for the business to trust and flexible enough for a caller who may not know every answer.
+
 ## 2. Create The Workflow
 
 In the Telnyx Portal:
@@ -155,4 +157,3 @@ End with one of these:
 - a clear message that the team will follow up
 
 Then run the scenarios in [TEST_PLAN.md](TEST_PLAN.md).
-
